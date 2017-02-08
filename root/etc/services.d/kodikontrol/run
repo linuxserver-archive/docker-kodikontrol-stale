@@ -3,5 +3,4 @@
 cd /usr/lib/node_modules/KodiKontrol || exit
 
 exec \
-	s6-setuidgid abc \
 	node ./bin/www
