@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
-cd /usr/lib/node_modules/KodiKontrol/bin || exit
+cd /usr/lib/node_modules/KodiKontrol || exit
 
 exec \
 	s6-setuidgid abc \
-	node www --home /config
+	node ./bin/www
