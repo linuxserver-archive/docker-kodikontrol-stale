@@ -19,6 +19,10 @@ RUN \
 	async \
 	programmerben/KodiKontrol && \
 
+# config kodikontrol
+ mv /usr/lib/node_modules/KodiKontrol/config.js \
+	/defaults/ && \
+
 # cleanup
  apk del --purge \
 	build-dependencies && \

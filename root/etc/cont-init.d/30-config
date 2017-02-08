@@ -3,7 +3,7 @@
 # copy config
 [[ ! -e /config/config.js ]] && \
 	cp /defaults/config.js /config/
-[[ ! -f /usr/lib/node_modules/KodiKontrol/config.js ]] && \
+[[ -f /usr/lib/node_modules/KodiKontrol/config.js ]] && \
 	rm /usr/lib/node_modules/KodiKontrol/config.js
 [[ ! -L /usr/lib/node_modules/KodiKontrol/config.js ]] && \
 	ln -s /usr/lib/node_modules/KodiKontrol/config.js /config/config.js
