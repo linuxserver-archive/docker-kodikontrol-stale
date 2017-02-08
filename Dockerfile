@@ -32,3 +32,7 @@ RUN \
 
 # add local files
 COPY root/ /
+
+# ports and volumes
+EXPOSE 443
+VOLUME /config
