@@ -1,5 +1,15 @@
 #!/usr/bin/with-contenv bash
 
+# make our folders
+mkdir -p \
+	/config/keys
+
+# create keys
+[[ ! -e /config/keys/certificate.pem ]] && \
+	openssl req -x509 -nodes -days 3650 \
+	-newkey rsa:2048 -keyout /config/keys/private-key.pem  -out /config/keys/certificate.pem \
+	-subj "/CN=kodi"
+
 # copy config
 [[ ! -e /config/config.js ]] && \
 	cp /defaults/config.js /config/config.js
@@ -7,6 +17,9 @@
 	rm /usr/lib/node_modules/KodiKontrol/config.js
 [[ ! -L /usr/lib/node_modules/KodiKontrol/config.js ]] && \
 	ln -s /config/config.js /usr/lib/node_modules/KodiKontrol/config.js
+
+cp /config/keys/*.pem /usr/lib/node_modules/KodiKontrol/ssl/
+
 
 # permissions
 chown abc:abc -R \

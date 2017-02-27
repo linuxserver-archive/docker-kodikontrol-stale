@@ -14,7 +14,9 @@ RUN \
  apk add --no-cache \
 	curl \
 	nodejs \
-	python && \
+	openssl \
+	python \
+	wget && \
 
 # install kodi kontrol
  npm install -g \
@@ -30,7 +32,8 @@ RUN \
 	build-dependencies && \
  npm cache clean && \
  rm -rf \
-	/tmp
+	/tmp \
+	/usr/lib/node_modules/KodiKontrol/ssl/*.pem
 
 # add local files
 COPY root/ /
