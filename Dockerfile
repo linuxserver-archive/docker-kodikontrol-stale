@@ -12,7 +12,9 @@ RUN \
 
 # install runtime packages
  apk add --no-cache \
-	nodejs && \
+	curl \
+	nodejs \
+	python && \
 
 # install kodi kontrol
  npm install -g \
