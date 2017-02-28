@@ -13,12 +13,12 @@ mkdir -p \
 # copy config
 [[ ! -e /config/config.js ]] && \
 	cp /defaults/config.js /config/config.js
-[[ -f /usr/lib/node_modules/KodiKontrol/config.js ]] && \
-	rm /usr/lib/node_modules/KodiKontrol/config.js
-[[ ! -L /usr/lib/node_modules/KodiKontrol/config.js ]] && \
-	ln -s /config/config.js /usr/lib/node_modules/KodiKontrol/config.js
+[[ -f /app/kodikontrol/config.js ]] && \
+	rm /app/kodikontrol/config.js
+[[ ! -L /app/kodikontrol/config.js ]] && \
+	ln -s /config/config.js /app/kodikontrol/config.js
 
-cp /config/keys/*.pem /usr/lib/node_modules/KodiKontrol/ssl/
+cp /config/keys/*.pem /app/kodikontrol/ssl/
 
 
 # permissions

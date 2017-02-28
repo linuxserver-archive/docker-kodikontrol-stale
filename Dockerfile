@@ -5,34 +5,46 @@ ARG BUILD_DATE
 ARG VERSION
 LABEL build_version="Linuxserver.io version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 
-# install packages
+# install build packages
 RUN \
- apk add --no-cache \
+ apk add --no-cache --virtual=build-dependencies \
 	curl \
-	git \
+	tar && \
+
+# install runtime packages
+ apk add --no-cache \
 	nodejs \
 	openssl \
 	python && \
 
 # install kodi kontrol
- npm install -g \
-	async && \
- npm install -g \
+ mkdir -p \
+	/app/kodikontrol && \
+ curl -o \
+ /tmp/kodikontrol.tar.gz -L \
+	https://github.com/programmerben/KodiKontrol/archive/master.tar.gz && \
+ tar xf \
+ /tmp/kodikontrol.tar.gz -C \
+	/app/kodikontrol --strip-components=1 && \
+ cd /app/kodikontrol && \
+ npm install && \
+ npm install \
+	async \
 	jsonrpc && \
- npm install -g \
-	programmerben/KodiKontrol && \
 
-# config kodikontrol
- mv /usr/lib/node_modules/KodiKontrol/config.js \
+# config kodikontrol
+ mv /app/kodikontrol/config.js \
 	/defaults/ && \
 
 # cleanup
+ apk del --purge \
+	build-dependencies && \
  npm cache clean && \
  rm -rf \
-	/tmp \
-	/usr/lib/node_modules/KodiKontrol/ssl/*.pem
+	/app/kodikontrol/ssl/*.pem \
+	/tmp
 
-# add local files
+# copy local files
 COPY root/ /
 
 # ports and volumes

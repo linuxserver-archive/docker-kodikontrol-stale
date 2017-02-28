@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-cd /usr/lib/node_modules/KodiKontrol || exit
+cd /app/kodikontrol || exit
 
 exec \
 	node ./bin/www
